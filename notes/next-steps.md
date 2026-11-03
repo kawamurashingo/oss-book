@@ -12,14 +12,14 @@
 - [x] `notes/v0.2-structure-review.md` に構成レビューと根拠を記録
 - [x] 著者レビュー完了、[PR #3](https://github.com/kawamurashingo/oss-book/pull/3)をmainへ反映
 
-## 校正と出典整理（PR #5、著者レビュー待ち）
+## 校正と出典整理（PR #5、マージ済み）
 
 - [x] 全章を通読し、客観的な事実を公開記録と照合
 - [x] 第3章の小見出しと第4章の公告日の表記を修正
 - [x] 読者向けの「参考資料」章を追加（PDF/EPUBに含める）
 - [x] `notes/proofreading-2026-11-03.md` に照合内容を記録
 - [x] `notes/imprint-plan.md` に奥付・頒布条件の未確定項目を整理
-- [ ] 本PRを著者が確認してmainへマージ
+- [x] 著者確認後に[PR #5](https://github.com/kawamurashingo/oss-book/pull/5)をmainへマージ
 - [x] [GitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41596668775)で追加した参考資料を含むA5判82ページのPDF・EPUBを生成・確認
 
 ## 刊行までの残件
@@ -40,7 +40,8 @@
 - [x] 書誌・奥付の入力欄を用意（実在しない名前や出版日を入れない）
 - [x] 技術書典向けの頒布情報の下書きと公式要件のメモを作成
 - [ ] PR #6のPDF/EPUBで表紙を確認し、著者レビューを受ける
-- [ ] 著者表記・発行者・発行日・著作権表示・頒布条件を確定
+- [x] 著者表記 `kawamurashingo` と発行者・サークル名 **知つなぐ舎** を確定
+- [ ] 発行日・著作権表示・頒布条件を確定
 
 ## 現行A5プレビューの正しいページ数
 
