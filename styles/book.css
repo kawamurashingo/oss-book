@@ -55,11 +55,9 @@ nav#TOC {
   font-size: 9pt;
   line-height: 1.7;
 }
-nav#TOC::before {
-  content: "目次";
-  display: block;
-  margin-bottom: 1.2em;
+nav#TOC > h2 {
   font-size: 16pt;
+  margin: 0 0 1.2em;
   font-weight: bold;
 }
 nav#TOC ul { margin: 0; padding-left: 1em; }
