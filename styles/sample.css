@@ -1,0 +1,16 @@
+/* Label only the promotional sample, not the full book. */
+section.book-cover { position: relative; }
+section.book-cover .sample-stamp {
+  position: absolute;
+  top: 110mm;
+  right: 12mm;
+  font-family: "Noto Sans CJK JP", sans-serif;
+  font-weight: 700;
+  font-size: 11pt;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(10, 23, 37, .88);
+  border: 0.5pt solid #73cfc7;
+  border-radius: 2mm;
+  padding: 4mm 7mm;
+}
