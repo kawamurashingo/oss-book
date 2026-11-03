@@ -35,8 +35,8 @@ def main() -> None:
     run(sys.executable, "scripts/build_manuscript.py")
     OUT.mkdir(parents=True, exist_ok=True)
     parts = sorted((ROOT / "manuscript").glob("[0-9][0-9]-*.md"))
-    if len(parts) != 14 or parts[0].name != "00-title.md":
-        raise SystemExit("Expected 00-title.md and 13 numbered manuscript sections")
+    if len(parts) != 15 or parts[0].name != "00-title.md" or parts[-1].name != "14-references.md":
+        raise SystemExit("Expected 15 ordered sections including 14-references.md")
 
     # The first section is the editorial title leaf. Pandoc builds the actual
     # title-page and EPUB metadata from book.yaml, so exclude this leaf.

@@ -26,13 +26,13 @@ python3 scripts/build_release.py
 
 生成物は `output/` に置かれます。
 
-- `manuscript.md`: 題名ページのMarkdownも含めた**全章の編集用結合原稿**
-- `body.md`: 題名ページのMarkdownを除いた組版入力（自動生成）
+- `manuscript.md`: 題名ページと巻末の参考資料を含めた**全章の編集用結合原稿**
+- `body.md`: 題名ページのMarkdownを除いた組版入力（参考資料を含む、自動生成）
 - `oss-book.html`: PDF組版用のHTML
 - `oss-book.pdf`: **A5判PDFプレビュー**
 - `oss-book.epub`: **EPUB3プレビュー**
 
-表紙のテキストとEPUBメタデータは `book.yaml` から生成します。タイトルのMarkdown（`manuscript/00-title.md`）は保存しますが、組版では二重表紙を避けるため本文から除外します。目次は章タイトルから自動生成されます。
+表紙のテキストとEPUBメタデータは `book.yaml` から生成します。タイトルのMarkdown（`manuscript/00-title.md`）は保存しますが、組版では二重表紙を避けるため本文から除外します。目次は章タイトルから自動生成されます。巻末の `manuscript/14-references.md` は**読者向け**の出典一覧としてPDF・EPUBに含まれ、`notes/` の内部編集メモは含まれません。
 
 ## GitHub Actions
 
