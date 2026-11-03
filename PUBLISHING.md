@@ -104,3 +104,13 @@ python3 scripts/check_release_readiness.py --enforce
 計画段階で4つの必須項目が揃った場合、プレビューでは **「奥付（発行予定・校正用）」「発行予定日：2026年11月21日」** と表示します。「発行日」とは表示しません。実際の頒布開始・校了を確認して初めて `publication_status` を `published` とし、必要なら実日付を更新してください。`scripts/check_release_readiness.py --enforce` は計画段階では必ず失敗します。
 
 発行予定日だけでは**販売・頒布・書籍審査・本文ライセンス確認**が済んだことにはなりません。
+
+## 2026-11-03: 奥付のPDF独立ページ化（PR #11）
+
+実際のPDFプレビュー（PR #10）では参考資料の最終段落と奥付が同じ最終ページに配置されていました。EPUBはPandocにより奥付が独立した章になりますが、PDFではHTML5出力の `h1` に対して改ページを指定する必要がありました。
+
+`styles/book.css` の奥付見出しに `break-before: page` を設定し、**PDFの最終ページを奥付専用**にします。新しい `scripts/verify_colophon_outputs.py` では、PDF最終ページが奥付のみを含み、EPUBにも同じ著者・発行者・発行予定日・著作権表示があることを検査します。ページ数は最終組版に合わせて実測してください。
+
+このチェックに通過しても発行済みではありません。`publication_status: planned` と出版前チェックリストの状態を維持してください。
+
+[PR #11のGitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41608759525)でPDF **59ページ**・EPUBCheck **0 fatals / 0 errors / 0 warnings**を確認。PDFの最終59ページを画像で確認し、参考資料の段落は前のページ、奥付は単独のページになりました。自動検査 `verify_colophon_outputs.py` も通過。PDFサイズ **1,347,408B**、EPUBサイズ **531,258B**。過去の58ページは独立奥付を適用する前の値です。

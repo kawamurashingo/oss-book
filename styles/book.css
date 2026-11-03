@@ -23,6 +23,9 @@ body {
   font-kerning: normal;
 }
 section.level1 { break-before: page; }
+/* Pandoc's HTML5 output has bare h1 tags (no section.level1 wrappers).
+   Reserve a standalone last page for the colophon in the printable PDF. */
+h1[id^="奥付"] { break-before: page; }
 section.level1 > h1 {
   font-family: "Noto Sans CJK JP", sans-serif;
   line-height: 1.5;
