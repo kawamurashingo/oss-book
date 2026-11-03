@@ -1,0 +1,54 @@
+name: Build sample PDF preview
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sample-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install book build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc fonts-noto-cjk poppler-utils libpango-1.0-0 libpangocairo-1.0-0
+          python -m pip install -r requirements-build.txt -r requirements-sample.txt
+      - name: Test sample builder
+        run: python -m unittest discover -s tests -p 'test_build_sample.py' -v
+      - name: Build full PDF and produce matching first-eight-page sample
+        run: |
+          python scripts/build_release.py
+          python scripts/build_sample.py --pages 8
+      - name: Verify sample really is shorter and A5
+        run: |
+          test -s output/oss-book-sample.pdf
+          test -s output/oss-book.pdf
+          FULL_PAGES=$(pdfinfo output/oss-book.pdf | awk '/^Pages:/ {print $2}')
+          SAMPLE_PAGES=$(pdfinfo output/oss-book-sample.pdf | awk '/^Pages:/ {print $2}')
+          test "$SAMPLE_PAGES" -eq 8
+          test "$FULL_PAGES" -gt "$SAMPLE_PAGES"
+          pdfinfo output/oss-book-sample.pdf | grep 'Page size:'
+          python - <<'PY'
+          from pypdf import PdfReader
+          full = PdfReader("output/oss-book.pdf")
+          sample = PdfReader("output/oss-book-sample.pdf")
+          assert len(sample.pages) == 8 and len(full.pages) > len(sample.pages)
+          for a, b in zip(sample.pages, full.pages):
+              assert a.extract_text() == b.extract_text(), "Sample differs from full book"
+          print("Sample matches the first 8 full-book pages")
+          PY
+      - name: Upload sample PDF only
+        uses: actions/upload-artifact@v4
+        with:
+          name: oss-book-sample-${{ github.run_number }}
+          path: output/oss-book-sample.pdf
+          if-no-files-found: error
