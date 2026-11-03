@@ -1,0 +1,13 @@
+# Generated documents
+/output/*
+!/output/.gitkeep
+
+# Local/editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+__pycache__/
+*.pyc
+.env
+.env.*
