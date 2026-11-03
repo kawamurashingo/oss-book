@@ -11,6 +11,49 @@ import argparse
 from pathlib import Path
 
 from pypdf import PdfReader, PdfWriter
+from pypdf.generic import ArrayObject, NameObject, TextStringObject
+
+
+def remove_dangling_named_links(writer: PdfWriter, reader: PdfReader, pages: int) -> int:
+    """Remove links to chapters absent from the sample, retaining usable links.
+
+    Pandoc's table of contents uses named destinations. pypdf retains link
+    annotations when splitting pages but excludes destinations for omitted
+    pages; those annotations would otherwise lead nowhere.
+    """
+    available = set()
+    for name, destination in reader.named_destinations.items():
+        try:
+            target_page = reader.get_destination_page_number(destination)
+        except (KeyError, ValueError):
+            continue
+        if 0 <= target_page < pages:
+            available.add(name)
+
+    removed = 0
+    for page in writer.pages:
+        original = page.get("/Annots")
+        if not original:
+            continue
+        retained = ArrayObject()
+        for ref in original:
+            annotation = ref.get_object()
+            destination = None
+            if annotation.get("/Subtype") == "/Link":
+                destination = annotation.get("/Dest")
+                action = annotation.get("/A")
+                if destination is None and action is not None and action.get("/S") == "/GoTo":
+                    destination = action.get("/D")
+            if isinstance(destination, (NameObject, TextStringObject)):
+                if str(destination).lstrip("/") not in available:
+                    removed += 1
+                    continue
+            retained.append(ref)
+        if retained:
+            page[NameObject("/Annots")] = retained
+        else:
+            page.pop(NameObject("/Annots"), None)
+    return removed
 
 
 def create_sample(source: Path, destination: Path, pages: int = 8) -> int:
@@ -31,6 +74,7 @@ def create_sample(source: Path, destination: Path, pages: int = 8) -> int:
     writer = PdfWriter()
     for number in range(pages):
         writer.add_page(reader.pages[number])
+    stripped = remove_dangling_named_links(writer, reader, pages)
 
     writer.add_metadata({
         "/Title": "OSSを作る、OSSに育てられる — 試し読み",
@@ -40,7 +84,7 @@ def create_sample(source: Path, destination: Path, pages: int = 8) -> int:
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("wb") as fh:
         writer.write(fh)
-    print(f"Sample: {destination} ({pages} / {total} pages)")
+    print(f"Sample: {destination} ({pages} / {total} pages; {stripped} dangling TOC links removed)")
     return total
 
 
