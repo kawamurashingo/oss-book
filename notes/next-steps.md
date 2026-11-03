@@ -64,5 +64,5 @@
 - [x] PR #10 のPDF 58ページ目を確認。参考資料の最終段落と奥付が同じページに混在する課題を特定
 - [x] 奥付の見出しから強制改ページするCSSを追加（EPUBの独立した奥付章は維持）
 - [x] PDF最終ページとEPUB奥付の実テキストが発行予定・著作権表記に一致するか自動検証
-- [ ] PR #11のCIでPDFページ数、EPUBCheck、サンプルの区切りを再確認
+- [x] [PR #11のCI](https://github.com/kawamurashingo/oss-book/actions/runs/41608759525)でPDF **59ページ**・奥付の独立ページ・EPUBCheck **0 errors / 0 warnings**を確認。試し読みワークフローも[成功](https://github.com/kawamurashingo/oss-book/actions/runs/41608759546)
 - [ ] 最終版の表紙・奥付・本文は著者が校了する

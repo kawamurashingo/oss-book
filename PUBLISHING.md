@@ -112,3 +112,5 @@ python3 scripts/check_release_readiness.py --enforce
 `styles/book.css` の奥付見出しに `break-before: page` を設定し、**PDFの最終ページを奥付専用**にします。新しい `scripts/verify_colophon_outputs.py` では、PDF最終ページが奥付のみを含み、EPUBにも同じ著者・発行者・発行予定日・著作権表示があることを検査します。ページ数は最終組版に合わせて実測してください。
 
 このチェックに通過しても発行済みではありません。`publication_status: planned` と出版前チェックリストの状態を維持してください。
+
+[PR #11のGitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41608759525)でPDF **59ページ**・EPUBCheck **0 fatals / 0 errors / 0 warnings**を確認。PDFの最終59ページを画像で確認し、参考資料の段落は前のページ、奥付は単独のページになりました。自動検査 `verify_colophon_outputs.py` も通過。PDFサイズ **1,347,408B**、EPUBサイズ **531,258B**。過去の58ページは独立奥付を適用する前の値です。
