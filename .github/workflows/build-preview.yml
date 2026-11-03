@@ -54,6 +54,8 @@ jobs:
           pdfinfo output/oss-book.pdf | grep -E 'Pages:|Page size:'
           unzip -t output/oss-book.epub | tail -1
           unzip -p output/oss-book.epub EPUB/content.opf | grep -E 'properties="cover-image"'
+      - name: Inspect rendered colophon in PDF and EPUB
+        run: python scripts/verify_colophon_outputs.py
       - name: Install official EPUBCheck 5.4.0
         run: |
           curl --fail --location --retry 3 --silent --show-error \
