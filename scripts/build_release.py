@@ -13,6 +13,13 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Use the same placeholder detection for both the preview and release audit.
+# Direct invocation and package import have different Python import roots.
+if __package__:
+    from .check_release_readiness import unresolved_fields
+else:
+    from check_release_readiness import unresolved_fields
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output"
 
@@ -45,9 +52,8 @@ def imprint_metadata() -> dict[str, str]:
 
 
 def complete_imprint(data: dict[str, str]) -> bool:
-    # Never ship an incomplete or invented colophon.
-    required = ("author", "publisher", "publication_date", "copyright")
-    return all(data[k] for k in required)
+    # Omit the colophon when any mandatory value is empty OR a placeholder.
+    return not unresolved_fields(data)
 
 
 def make_colophon(data: dict[str, str], title: str) -> str:
