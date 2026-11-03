@@ -33,6 +33,19 @@ jobs:
           python -m unittest discover -s tests -v
       - name: Build PDF and EPUB previews
         run: python scripts/build_release.py
+      - name: Verify planned issue date is labeled as planned
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('publication/imprint.json').read_text(encoding='utf-8'))
+          text = Path('output/body.md').read_text(encoding='utf-8')
+          if data['publication_status'] == 'planned':
+              assert '奥付（発行予定・校正用）' in text
+              assert '発行予定日：' in text
+              assert '発行日：' not in text
+              print('Planned issue date correctly labeled in book preview')
+          PY
       - name: Verify generated files
         run: |
           test -s output/oss-book.pdf
