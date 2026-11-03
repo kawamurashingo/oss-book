@@ -35,7 +35,7 @@
 - [ ] 表紙のデザイン・著者名表示を著者が承認
 - [ ] 同一表紙がPDF・EPUBの両方で正常に表示されることをCIで確認
 - [x] 技術書典オンラインマーケットの公式利用規約を確認（2026-11-03）
-- [ ] GitHub Actionsで公式EPUBCheck 5.4.0を実行し、エラー・警告を確認
+- [x] [GitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41602831747)で公式EPUBCheck 5.4.0の合格を確認（0 fatal / 0 errors / 0 warnings）
 - [ ] **最終頒布用**EPUBを再度EPUBCheckで検証（制作中の通過と混同しない）
 - [ ] 登録する本の見本と販売ファイルの本文が一致していることを確認
 - [ ] PDF・EPUBのファイル容量を確認（文字中心は100MB以下を目安）

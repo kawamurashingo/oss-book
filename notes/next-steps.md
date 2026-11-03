@@ -54,6 +54,6 @@
 - [x] [PR #6](https://github.com/kawamurashingo/oss-book/pull/6) をマージ、表紙・著者名・発行者名をmainへ反映
 - [x] W3C公式EPUBCheck 5.4.0のCI実行手順を追加
 - [x] 奥付の未確定情報を表示し、`--enforce` ではブロックする検査を追加
-- [ ] PR #7のCIで実際のEPUBCheck結果を確認し、必要なら修正
+- [x] [PR #7のCI](https://github.com/kawamurashingo/oss-book/actions/runs/41602831747)でEPUBCheck 5.4.0を実行：**0 fatal / 0 errors / 0 warnings**
 - [ ] 発行日と著作権表示を著者が決定（未確定値は入れない）
 - [ ] 頒布前に公開名義・引用・校了・価格・ライセンス・見本一致を確認

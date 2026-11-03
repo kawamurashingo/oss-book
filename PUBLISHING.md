@@ -86,3 +86,5 @@ python3 scripts/check_release_readiness.py --enforce
 通常モードは**校正中の警告のみ**で、ビルドを止めません。`--enforce` は必要な奥付情報が未確定なら終了コード1で停止します。現時点では著者名と発行者名が確定しましたが、発行日と著作権表示は未確定です。
 
 **奥付の項目が揃っただけでは刊行できません。** 著者による校了、内容の権利確認、表紙の確認、販売条件と技術書典登録は別途必要です。GitHub Actionsが成功しても完成版として自動公開しません。
+
+2026-11-03の[PR #7検証ジョブ](https://github.com/kawamurashingo/oss-book/actions/runs/41602831747)では、EPUBCheck 5.4.0が**0 fatals / 0 errors / 0 warnings / 0 infos**と報告し、A5判PDFは58ページでした。奥付は発行日・著作権表示が空欄のため意図どおり未挿入です。最終原稿に変更があれば再検証してください。
