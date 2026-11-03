@@ -56,7 +56,7 @@ def remove_dangling_named_links(writer: PdfWriter, reader: PdfReader, pages: int
     return removed
 
 
-def create_sample(source: Path, destination: Path, pages: int = 8) -> int:
+def create_sample(source: Path, destination: Path, pages: int = 12) -> int:
     if source.resolve() == destination.resolve():
         raise ValueError("Sample output must not overwrite the full PDF")
     if pages < 1:
@@ -92,8 +92,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=Path("output/oss-book.pdf"))
     parser.add_argument("--output", type=Path, default=Path("output/oss-book-sample.pdf"))
-    parser.add_argument("--pages", type=int, default=8,
-                        help="Number of front pages (default: 8)")
+    parser.add_argument("--pages", type=int, default=12,
+                        help="Number of front pages (default: 12; chapter break checked by CI)")
     args = parser.parse_args()
     create_sample(args.source, args.output, args.pages)
 

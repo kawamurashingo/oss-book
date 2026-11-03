@@ -68,6 +68,15 @@ class SamplePdfTests(unittest.TestCase):
         self.assertIn("inside", sample.named_destinations)
         self.assertNotIn("outside", sample.named_destinations)
 
+    def test_default_is_twelve_pages(self):
+        writer = PdfWriter()
+        for _ in range(15):
+            writer.add_blank_page(width=420, height=595)
+        with self.src.open("wb") as f:
+            writer.write(f)
+        create_sample(self.src, self.dest)
+        self.assertEqual(len(PdfReader(str(self.dest)).pages), 12)
+
     def test_rejects_accidental_full_book(self):
         with self.assertRaisesRegex(ValueError, "entire manuscript"):
             create_sample(self.src, self.dest, 12)
