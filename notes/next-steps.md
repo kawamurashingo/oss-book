@@ -20,5 +20,5 @@
 - [ ] 目次・奥付・著作権表記・ライセンス方針
 - [ ] 文章の分量と組版後の実ページ数を再計測し、80ページ目標を再検討
 - [x] A5判PDF／EPUBのプレビュービルド手順を用意（PR #4）
-- [ ] GitHub Actionsで現行v0.2のPDF／EPUBが正常に生成されることを確認
+- [x] [GitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41562732832)で現行v0.2のPDF／EPUB生成を確認。A5判**79ページ**、EPUB3の整合性チェック合格
 - [ ] 頒布用PDF／EPUBの最終確認
