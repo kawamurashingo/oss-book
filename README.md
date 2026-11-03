@@ -12,6 +12,8 @@
 - [執筆・編集方針](notes/editorial-guide.md)
 - [今後の作業](notes/next-steps.md)
 - [読者向け参考資料](manuscript/14-references.md)
+- [表紙案（編集可能なSVG）](assets/cover.svg)
+- [奥付の入力欄](publication/imprint.json)
 
 Markdown原稿を正本とし、章単位で変更履歴を管理します。
 
@@ -21,7 +23,7 @@ python3 scripts/build_manuscript.py
 
 このコマンドで `output/manuscript.md` に全章を連結できます。
 
-PDF・EPUBのプレビュー生成手順は [PUBLISHING.md](PUBLISHING.md) にあります。GitHub Actionsによる自動生成にも対応しています。
+PDF・EPUBのプレビュー生成手順は [PUBLISHING.md](PUBLISHING.md) にあります。表紙は両形式で共通の画像を使用します。GitHub Actionsによる自動生成にも対応しています。
 
 ```sh
 python3 scripts/build_release.py

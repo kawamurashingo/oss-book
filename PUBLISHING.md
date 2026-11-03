@@ -45,3 +45,13 @@ python3 scripts/build_release.py
 2026-11-03に旧v0.1原稿を使ったローカル動作試験ではA5判64ページのPDFと正常に展開できるEPUB3を生成できました。これは**v0.2の正式ページ数ではありません**。現行v0.2のプレビューは2026-11-03のGitHub Actionsで**79ページ**と実測され、EPUB3の整合性チェックも通過しました（[実行記録](https://github.com/kawamurashingo/oss-book/actions/runs/41562732832)）。編集後には必ず再計測してください。
 
 2026-11-03の[校正PR #5の自動生成](https://github.com/kawamurashingo/oss-book/actions/runs/41596668775)では、読者向け参考資料を追加したv0.3候補のPDFがA5判**82ページ**となり、EPUB3のZIP整合性も確認できました。これは校正用プレビューであり、最終刊行版のページ数を保証するものではありません。
+
+## 表紙・奥付の仕組み（試作）
+
+`assets/cover.svg` が**編集可能な表紙の正本**です。ビルド時にCairoSVGで `output/cover.png` に変換し、同じPNGをA5 PDFの表紙とEPUBのカバーとして使用します。表紙の日本語文字はNoto CJKフォントを使用します。**フォントファイルをリポジトリへコピーしたり再配布したりしないでください。**
+
+`publication/imprint.json` に、正式に確定した著者・発行者・発行日・著作権表示を入力します。未確定の段階では値は空欄のままにします。**必須4項目（author / publisher / publication_date / copyright）が揃うまで、奥付はPDF・EPUBに挿入しません。** `contact` は任意です。
+
+著者名が決まると、表紙とEPUBメタデータにも自動挿入されます。書名や副題を変更する場合は `book.yaml` と `assets/cover.svg` を揃えて更新してください。
+
+これは頒布開始の操作ではありません。値を入力した後も、著者の最終確認・校正・権利処理と実際の技術書典への登録が必要です。

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2260" width="1600" height="2260" role="img" aria-label="OSSを作る、OSSに育てられる 表紙">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#091725"/><stop offset="0.58" stop-color="#11273A"/><stop offset="1" stop-color="#0A1725"/></linearGradient>
+ <linearGradient id="thread" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#49BDB8"/><stop offset="0.48" stop-color="#72D6CE"/><stop offset="1" stop-color="#D4BD86"/></linearGradient>
+ <radialGradient id="halo"><stop offset="0" stop-color="#55D5C6" stop-opacity=".28"/><stop offset="1" stop-color="#55D5C6" stop-opacity="0"/></radialGradient>
+ <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="#A0C5CF" stroke-opacity=".065" stroke-width="1"/></pattern>
+</defs>
+<rect width="1600" height="2260" fill="url(#bg)"/>
+<rect width="1600" height="2260" fill="url(#grid)"/>
+<rect x="124" y="138" width="54" height="7" fill="#D7BE86"/>
+<text x="200" y="153" font-family="Noto Sans CJK JP, sans-serif" font-size="30" letter-spacing="5" fill="#A8C0C7">A PERSONAL OPEN SOURCE STORY</text>
+<text x="128" y="475" font-family="Noto Sans CJK JP, sans-serif" font-weight="700" font-size="109" fill="#F4F3EA">OSSを作る、</text>
+<text x="128" y="635" font-family="Noto Sans CJK JP, sans-serif" font-weight="700" font-size="109" fill="#F4F3EA">OSSに育てられる</text>
+<rect x="132" y="720" width="165" height="5" fill="#55C6BD"/>
+<text x="130" y="808" font-family="Noto Sans CJK JP, sans-serif" font-size="51" fill="#E1E9E9">JQ-LiteからCPAN Rescueへ、</text>
+<text x="130" y="885" font-family="Noto Sans CJK JP, sans-serif" font-size="51" fill="#E1E9E9">ひとりの開発者の旅</text>
+<circle cx="855" cy="1500" r="585" fill="url(#halo)"/>
+<g fill="none" stroke="#79C7CA" stroke-width="2" stroke-opacity=".2">
+ <path d="M 0 1220 C 550 1110, 850 1070, 1600 1230"/>
+ <path d="M 0 1800 C 540 1930, 1020 1780, 1600 1690"/>
+ <path d="M 0 1990 C 760 2090, 1230 2040, 1600 1930"/>
+</g>
+<g stroke="url(#thread)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+ <path d="M 115 1655 C 325 1655 300 1335 552 1385 S 790 1690 1030 1490 S 1350 1250 1495 1400"/>
+ <path d="M 115 1788 C 350 1770 425 1840 630 1745 S 960 1485 1230 1755 S 1410 1890 1500 1830" stroke-opacity=".55" stroke-width="4"/>
+</g>
+<g>
+ <circle cx="211" cy="1614" r="21" fill="#55CFC4"/><circle cx="211" cy="1614" r="38" fill="none" stroke="#55CFC4" stroke-opacity=".35" stroke-width="3"/>
+ <circle cx="552" cy="1385" r="24" fill="#62CBC1"/><circle cx="552" cy="1385" r="42" fill="none" stroke="#62CBC1" stroke-opacity=".32" stroke-width="3"/>
+ <circle cx="829" cy="1608" r="21" fill="#8ACDB8"/><circle cx="829" cy="1608" r="39" fill="none" stroke="#8ACDB8" stroke-opacity=".32" stroke-width="3"/>
+ <circle cx="1098" cy="1418" r="26" fill="#B4CA9F"/><circle cx="1098" cy="1418" r="46" fill="none" stroke="#B4CA9F" stroke-opacity=".28" stroke-width="3"/>
+ <circle cx="1468" cy="1379" r="26" fill="#D5BA85"/><circle cx="1468" cy="1379" r="44" fill="none" stroke="#D5BA85" stroke-opacity=".32" stroke-width="3"/>
+</g>
+<g stroke="#92C3C3" stroke-width="2" fill="none" opacity=".28">
+ <path d="M 552 1385 L 668 1180 L 945 1260 L 1098 1418"/>
+ <path d="M 829 1608 L 975 1865 L 1220 1760"/>
+ <path d="M 211 1614 L 250 1940 L 490 2020"/>
+</g>
+<g fill="#92C8CA" opacity=".7"><circle cx="668" cy="1180" r="7"/><circle cx="945" cy="1260" r="7"/><circle cx="975" cy="1865" r="7"/><circle cx="1220" cy="1760" r="7"/><circle cx="250" cy="1940" r="7"/><circle cx="490" cy="2020" r="7"/></g>
+<!-- AUTHOR_CREDIT -->
+<path d="M 124 2108 H 1476" stroke="#A9C4C7" stroke-opacity=".35"/>
+<text x="128" y="2170" font-family="Noto Sans CJK JP, sans-serif" font-size="34" fill="#B6CACD" letter-spacing="3">つくる  /  守る  /  引き継ぐ</text>
+</svg>
