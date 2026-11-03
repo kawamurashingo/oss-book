@@ -1,0 +1,49 @@
+name: Build promotional reader sample
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reader-sample:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install typesetting tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc fonts-noto-cjk poppler-utils libpango-1.0-0 libpangocairo-1.0-0
+          python -m pip install -r requirements-build.txt
+      - name: Check sample uses unchanged chapters
+        run: python -m unittest discover -s tests -p 'test_sample.py' -v
+      - name: Build full preview and reader sample
+        run: |
+          python scripts/build_release.py
+          python scripts/build_sample.py
+      - name: Verify PDF pages and excerpt boundaries
+        run: |
+          test -s output/oss-book-sample.pdf
+          test -s output/sample-body.md
+          FULL_PAGES=$(pdfinfo output/oss-book.pdf | awk '/^Pages:/ {print $2}')
+          SAMPLE_PAGES=$(pdfinfo output/oss-book-sample.pdf | awk '/^Pages:/ {print $2}')
+          echo "Full PDF: ${FULL_PAGES} pages"
+          echo "Reader sample: ${SAMPLE_PAGES} pages"
+          test "${SAMPLE_PAGES}" -gt 2
+          test "${SAMPLE_PAGES}" -lt "${FULL_PAGES}"
+          pdftotext output/oss-book-sample.pdf - | grep -q "第2章"
+      - name: Upload sample for review (not public release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: oss-book-reader-sample-${{ github.run_number }}
+          path: |
+            output/oss-book-sample.pdf
+            output/sample-body.md
+          if-no-files-found: error
