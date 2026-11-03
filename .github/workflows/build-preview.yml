@@ -29,8 +29,10 @@ jobs:
         run: |
           test -s output/oss-book.pdf
           test -s output/oss-book.epub
+          test -s output/cover.png
           pdfinfo output/oss-book.pdf | grep -E 'Pages:|Page size:'
           unzip -t output/oss-book.epub | tail -1
+          unzip -p output/oss-book.epub EPUB/content.opf | grep -E 'properties="cover-image"'
       - name: Upload preview artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -38,5 +40,6 @@ jobs:
           path: |
             output/oss-book.pdf
             output/oss-book.epub
+            output/cover.png
             output/manuscript.md
           if-no-files-found: error

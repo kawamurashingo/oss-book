@@ -8,12 +8,17 @@
     color: #747780;
   }
 }
-@page:first { @bottom-center { content: ""; } }
+@page:first { margin: 0; @bottom-center { content: ""; } }
 html { color: #20242c; }
 body {
+  /* Pandoc's standalone HTML inserts padding:50px and max-width:36em.
+     Override those so the A5 page margins come only from @page. */
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
   font-family: "Noto Serif CJK JP", "Noto Serif", serif;
-  font-size: 10pt;
-  line-height: 1.82;
+  font-size: 11pt !important;
+  line-height: 1.82 !important;
   overflow-wrap: break-word;
   font-kerning: normal;
 }
@@ -71,16 +76,17 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 8pt; }
 header#title-block-header { display: none; }
 section.book-cover {
   break-after: page;
-  text-align: center;
-  font-family: "Noto Sans CJK JP", sans-serif;
-  padding-top: 42mm;
+  width: 148mm;
+  height: 210mm;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
 }
-section.book-cover > h1 {
-  border: 0;
-  font-size: 23pt;
-  line-height: 1.55;
-  margin: 0 0 13mm;
+section.book-cover img {
+  display: block;
+  width: 148mm;
+  height: 210mm;
+  max-width: none;
+  object-fit: fill;
 }
-section.book-cover p.subtitle { font-size: 10pt; line-height: 1.8; }
-section.book-cover p.draft-note { margin-top: 45mm; font-size: 8pt; color:#757780; }
 main section.level1:first-child { break-before: auto; }

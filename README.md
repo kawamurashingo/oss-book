@@ -12,6 +12,8 @@
 - [執筆・編集方針](notes/editorial-guide.md)
 - [今後の作業](notes/next-steps.md)
 - [読者向け参考資料](manuscript/14-references.md)
+- [表紙案（編集可能なSVG）](assets/cover.svg)
+- [奥付の入力欄](publication/imprint.json)
 
 Markdown原稿を正本とし、章単位で変更履歴を管理します。
 
@@ -21,7 +23,7 @@ python3 scripts/build_manuscript.py
 
 このコマンドで `output/manuscript.md` に全章を連結できます。
 
-PDF・EPUBのプレビュー生成手順は [PUBLISHING.md](PUBLISHING.md) にあります。GitHub Actionsによる自動生成にも対応しています。
+PDF・EPUBのプレビュー生成手順は [PUBLISHING.md](PUBLISHING.md) にあります。表紙は両形式で共通の画像を使用します。GitHub Actionsによる自動生成にも対応しています。
 
 ```sh
 python3 scripts/build_release.py
@@ -35,5 +37,6 @@ python3 scripts/build_release.py
 
 - 現行原稿: v0.3（2026年11月、校正中）
 - 旧版: v0.1を `archive/v0.1/` に保存
-- 目標: A5判 約80ページ（v0.2で79ページ、v0.3参考資料追加版で**82ページ**。今後の校正で変動あり）
+- 現行表紙付きプレビュー：A5判 **58ページ**（Pandoc由来の二重余白を修正済み）。旧79/82ページは組版不備を含む過去の計測値。
+- 80ページ前後の目標は内容・版面の両方を見て再検討し、水増しはしません。
 - 全10章、はじめに、プロローグ、エピローグ、参考資料
