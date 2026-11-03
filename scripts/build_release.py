@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import html as html_lib
 import json
+from datetime import date
 import re
 import subprocess
 import sys
@@ -43,7 +44,7 @@ def book_meta() -> tuple[str, str]:
 def imprint_metadata() -> dict[str, str]:
     p = ROOT / "publication" / "imprint.json"
     data = json.loads(p.read_text(encoding="utf-8"))
-    expected = {"author", "publisher", "publication_date", "copyright", "contact"}
+    expected = {"author", "publisher", "publication_date", "publication_status", "copyright", "contact"}
     if not expected.issubset(data):
         raise SystemExit(f"Missing imprint keys: {sorted(expected - set(data))}")
     if any(not isinstance(data[k], str) for k in expected):
@@ -52,19 +53,23 @@ def imprint_metadata() -> dict[str, str]:
 
 
 def complete_imprint(data: dict[str, str]) -> bool:
-    # Omit the colophon when any mandatory value is empty OR a placeholder.
+    # Planned issues may have a *preview* colophon, but must say "予定".
+    # Missing or invalid metadata is never printed in a book preview.
     return not unresolved_fields(data)
 
 
 def make_colophon(data: dict[str, str], title: str) -> str:
     if not complete_imprint(data):
         return ""
+    is_planned = data["publication_status"] == "planned"
+    issue_date = date.fromisoformat(data["publication_date"])
+    date_text = f"{issue_date.year}年{issue_date.month}月{issue_date.day}日"
     lines = [
-        "# 奥付",
+        "# 奥付（発行予定・校正用）" if is_planned else "# 奥付",
         f"**{title}**",
         f"著者：{data['author']}",
         f"発行：{data['publisher']}",
-        f"発行日：{data['publication_date']}",
+        f"{'発行予定日' if is_planned else '発行日'}：{date_text}",
         f"著作権表示：{data['copyright']}",
     ]
     if data["contact"]:
@@ -86,6 +91,8 @@ def main() -> None:
     body = OUT / "body.md"
     body_text = "\n\n".join(p.read_text(encoding="utf-8").rstrip() for p in parts[1:]) + "\n"
     if has_imprint:
+        if imprint["publication_status"] == "planned":
+            print("DRAFT ONLY: preview colophon includes a planned, not actual, issue date")
         body_text += "\n\n" + make_colophon(imprint, title)
     else:
         print("Publication metadata incomplete: colophon intentionally omitted from preview")
