@@ -2,7 +2,7 @@
 
 **副題：JQ-LiteからCPAN Rescueへ、ひとりの開発者の旅**
 
-技術書典向けのOSS活動体験記。現在は**全章初稿 v0.1**（校正・増補前）です。
+技術書典向けのOSS活動体験記。現在は**全章を通した改稿版 v0.2（校正・組版中）**です。
 
 ## 原稿
 
@@ -18,7 +18,13 @@ Markdown原稿を正本とし、章単位で変更履歴を管理します。
 python3 scripts/build_manuscript.py
 ```
 
-このコマンドで `output/manuscript.md` に全章を連結できます。PDF・Word生成は今後追加予定です。
+このコマンドで `output/manuscript.md` に全章を連結できます。
+
+PDF・EPUBのプレビュー生成手順は [PUBLISHING.md](PUBLISHING.md) にあります。GitHub Actionsでの自動生成にも対応する予定です。
+
+```sh
+python3 scripts/build_release.py
+```
 
 ## 注意事項
 
@@ -26,6 +32,7 @@ python3 scripts/build_manuscript.py
 
 ## 状態
 
-- 初稿: v0.1（2026年11月）
-- 目標: A5判 約80ページ（現時点のv0.1組版は約50ページ）
+- 現行原稿: v0.2（2026年11月、校正中）
+- 旧版: v0.1を `archive/v0.1/` に保存
+- 目標: A5判 約80ページ（v0.2の実ページ数は新しいPDFで再計測）
 - 全10章、はじめに、プロローグ、エピローグ

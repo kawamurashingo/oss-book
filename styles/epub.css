@@ -1,0 +1,7 @@
+body { font-family: serif; line-height: 1.7; }
+h1, h2 { line-height: 1.45; }
+h1 { page-break-before: always; margin-top: 1.3em; }
+h2 { margin-top: 1.7em; }
+p { margin: 0 0 0.8em; }
+pre { white-space: pre-wrap; }
+img { max-width: 100%; }
