@@ -63,3 +63,30 @@ python3 scripts/build_release.py
 この修正後、[GitHub Actionsのビルド](https://github.com/kawamurashingo/oss-book/actions/runs/41599901837)で得られた**実測は58ページ**（表紙・目次・本文・参考資料を含む）です。これまでの79/82ページは重複余白による過去の計測値で、現在の正しい版面のページ数として使わないでください。
 
 表紙はPDFの1ページ目にフルページで収まり、EPUBの`content.opf`でも`cover-image`として登録されることを確認しました。内容を増やして80ページに近づけるかどうかは、実体験を加筆する価値がある場合に限って検討します。
+
+## EPUBCheckと正式頒布前のチェック
+
+GitHub ActionsではPDF/EPUBの生成・ZIP整合性確認に加え、W3Cが案内する公式 **EPUBCheck 5.4.0** をダウンロードしてEPUB3の適合性を検証します。これは [EPUBCheck 公式配布](https://github.com/w3c/epubcheck/releases/tag/v5.4.0) を使用しており、第三者製Pythonの同名ツールとは別物です。バージョンを更新する際は検証結果の差を確認してください。
+
+ローカルでの例：
+
+```sh
+curl -fL https://github.com/w3c/epubcheck/releases/download/v5.4.0/epubcheck-5.4.0.zip -o epubcheck.zip
+unzip epubcheck.zip
+java -jar epubcheck-5.4.0/epubcheck.jar output/oss-book.epub
+```
+
+奥付の未確定項目は次のコマンドで確認します。
+
+```sh
+python3 scripts/check_release_readiness.py
+python3 scripts/check_release_readiness.py --enforce
+```
+
+通常モードは**校正中の警告のみ**で、ビルドを止めません。`--enforce` は必要な奥付情報が未確定なら終了コード1で停止します。現時点では著者名と発行者名が確定しましたが、発行日と著作権表示は未確定です。
+
+**奥付の項目が揃っただけでは刊行できません。** 著者による校了、内容の権利確認、表紙の確認、販売条件と技術書典登録は別途必要です。GitHub Actionsが成功しても完成版として自動公開しません。
+
+2026-11-03の[PR #7検証ジョブ](https://github.com/kawamurashingo/oss-book/actions/runs/41602831747)では、EPUBCheck 5.4.0が**0 fatals / 0 errors / 0 warnings / 0 infos**と報告し、A5判PDFは58ページでした。奥付は発行日・著作権表示が空欄のため意図どおり未挿入です。最終原稿に変更があれば再検証してください。
+
+奥付の出力判定も、未確定項目の監査と同じ検査関数を使います。空欄だけでなく、`TBD`・`未確定`などの仮文字列も検出して、プレビューに未完成の奥付が入らないようにします。

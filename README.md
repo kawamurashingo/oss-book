@@ -14,6 +14,7 @@
 - [読者向け参考資料](manuscript/14-references.md)
 - [表紙案（編集可能なSVG）](assets/cover.svg)
 - [奥付の入力欄](publication/imprint.json)
+- [出版前のメタデータ検査](scripts/check_release_readiness.py)
 
 Markdown原稿を正本とし、章単位で変更履歴を管理します。
 

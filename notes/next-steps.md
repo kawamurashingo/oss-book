@@ -39,7 +39,7 @@
 - [x] 表紙案をSVGで用意し、PDF・EPUBで共有できる生成手順を作成
 - [x] 書誌・奥付の入力欄を用意（実在しない名前や出版日を入れない）
 - [x] 技術書典向けの頒布情報の下書きと公式要件のメモを作成
-- [ ] PR #6のPDF/EPUBで表紙を確認し、著者レビューを受ける
+- [x] PR #6を著者承認後にマージ（表紙デザインの最終決定・校了は別途確認）
 - [x] 著者表記 `kawamurashingo` と発行者・サークル名 **知つなぐ舎** を確定
 - [ ] 発行日・著作権表示・頒布条件を確定
 
@@ -48,3 +48,12 @@
 - [x] PR #6の組版検証で、Pandoc標準CSSとの二重余白を修正
 - [x] [GitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41599901837)でPDF・EPUB両方のビルド成功。A5判の実測は**58ページ**
 - [ ] 残りの加筆は必要な実体験や資料をもとに検討し、無理な字数合わせはしない
+
+## EPUBの正式検証と頒布可否の検査（PR #7）
+
+- [x] [PR #6](https://github.com/kawamurashingo/oss-book/pull/6) をマージ、表紙・著者名・発行者名をmainへ反映
+- [x] W3C公式EPUBCheck 5.4.0のCI実行手順を追加
+- [x] 奥付の未確定情報を表示し、`--enforce` ではブロックする検査を追加
+- [x] [PR #7のCI](https://github.com/kawamurashingo/oss-book/actions/runs/41602831747)でEPUBCheck 5.4.0を実行：**0 fatal / 0 errors / 0 warnings**
+- [ ] 発行日と著作権表示を著者が決定（未確定値は入れない）
+- [ ] 頒布前に公開名義・引用・校了・価格・ライセンス・見本一致を確認
