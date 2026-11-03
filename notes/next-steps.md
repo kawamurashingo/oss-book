@@ -20,7 +20,7 @@
 - [x] `notes/proofreading-2026-11-03.md` に照合内容を記録
 - [x] `notes/imprint-plan.md` に奥付・頒布条件の未確定項目を整理
 - [ ] 本PRを著者が確認してmainへマージ
-- [ ] 追加した参考資料を含むビルドをGitHub Actionsで確認
+- [x] [GitHub Actions](https://github.com/kawamurashingo/oss-book/actions/runs/41596668775)で追加した参考資料を含むA5判82ページのPDF・EPUBを生成・確認
 
 ## 刊行までの残件
 
